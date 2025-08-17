@@ -2,13 +2,13 @@ provider "aws" {
   region = var.region
 }
 
-data "aws_eks_cluster" "this" {
-  name = module.eks.cluster_name
-}
+# data "aws_eks_cluster" "this" {
+#   name = module.eks.cluster_name
+# }
 
-data "aws_eks_cluster_auth" "this" {
-  name = module.eks.cluster_name
-}
+# data "aws_eks_cluster_auth" "this" {
+#   name = module.eks.cluster_name
+# }
 
 # provider "kubernetes" {
 #   host                   = data.aws_eks_cluster.this.endpoint
@@ -27,13 +27,13 @@ data "aws_eks_cluster_auth" "this" {
 provider "kubernetes" {
   host                   = module.eks.cluster_endpoint
   cluster_ca_certificate = base64decode(module.eks.cluster_certificate_authority_data)
-  token                  = data.aws_eks_cluster_auth.this.token
+  token                  = module.eks.cluster_token  # <-- output from EKS module or use aws_eks_cluster_auth
 }
 
 provider "helm" {
   kubernetes {
     host                   = module.eks.cluster_endpoint
     cluster_ca_certificate = base64decode(module.eks.cluster_certificate_authority_data)
-    token                  = data.aws_eks_cluster_auth.this.token
+    token                  = module.eks.cluster_token  # <-- same here
   }
 }
