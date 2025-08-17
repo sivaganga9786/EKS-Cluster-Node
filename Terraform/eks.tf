@@ -32,7 +32,11 @@ module "eks" {
   }
 }
 
+data "aws_iam_role" "nodegroup_role" {
+  name = module.eks.node_groups["apps"].iam_role_name
+}
+
 resource "aws_iam_role_policy_attachment" "ssm_for_nodegroup" {
-  role       = module.eks.node_groups["apps"].iam_role_name
+  role       = data.aws_iam_role.nodegroup_role.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
 }
