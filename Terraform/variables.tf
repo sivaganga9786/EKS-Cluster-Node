@@ -22,3 +22,14 @@ variable "node_groups" {
   }))
   description = "Managed node groups"
 }
+
+variable "cluster_autoscaler_cluster_ids" {
+  type    = list(string)
+  default = []
+}
+
+variable "cluster_autoscaler_cluster_names" {
+  type    = list(string)
+  default = []
+}
+
