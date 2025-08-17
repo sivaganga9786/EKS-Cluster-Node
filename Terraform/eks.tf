@@ -7,7 +7,7 @@ module "eks" {
   vpc_id                          = module.vpc.vpc_id
   subnet_ids                      = module.vpc.private_subnets
   control_plane_subnet_ids        = module.vpc.private_subnets
-  cluster_endpoint_public_access  = true
+  cluster_endpoint_public_access  = false
   cluster_endpoint_private_access = true
   enable_irsa                     = true
 
@@ -30,4 +30,9 @@ module "eks" {
   tags = {
     Environment = "platform"
   }
+}
+
+resource "aws_iam_role_policy_attachment" "ssm_for_nodegroup" {
+  role       = module.eks.node_groups["apps"].iam_role_name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
 }
