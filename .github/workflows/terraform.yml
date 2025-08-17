@@ -21,7 +21,7 @@ jobs:
           terraform_version: 1.7.5
       - uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::202533503931:role/github-actions-oidc
+          role-to-assume: ${{ secrets.AWS_ROLE_DEV }}
           aws-region: ap-south-1
       - name: Terraform Init
         run: terraform -chdir=terraform init -input=false
@@ -50,7 +50,7 @@ jobs:
           terraform_version: 1.7.5
       - uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::202533503931:role/GitHubActionsRole
+          role-to-assume: ${{ secrets.AWS_ROLE_DEV }}
           aws-region: ap-south-1
       - name: Terraform Init
         run: terraform -chdir=terraform init -input=false
