@@ -28,7 +28,7 @@ jobs:
       - name: Terraform Workspace
         run: terraform -chdir=Terraform workspace select dev || terraform -chdir=Terraform workspace new dev
       - name: Terraform Plan
-        run: terraform -chdir=Terraform plan -var-file=Terraform/envs/dev/terraform.tfvars -no-color -out=terraform/tfplan-dev.bin
+        run: terraform -chdir=Terraform plan -var-file=terraform/envs/dev/terraform.tfvars -no-color -out=terraform/tfplan-dev.bin
       - name: Upload Plan
         uses: actions/upload-artifact@v4
         with:
@@ -85,4 +85,4 @@ jobs:
       - name: Terraform Workspace
         run: terraform -chdir=Terraform workspace select dev || terraform -chdir=Terraform workspace new dev
       - name: Terraform Destroy
-        run: terraform -chdir=Terraform destroy -var-file=Terraform/envs/dev/terraform.tfvars -auto-approve
+        run: terraform -chdir=Terraform destroy -var-file=terraform/envs/dev/terraform.tfvars -auto-approve
