@@ -85,3 +85,6 @@ jobs:
         run: terraform -chdir=Terraform workspace select dev || terraform -chdir=Terraform workspace new dev
       - name: Terraform Destroy
         run: terraform -chdir=Terraform destroy -var-file=envs/dev/terraform.tfvars -auto-approve
+
+
+        
