@@ -3,6 +3,8 @@ terraform {
     bucket         = "terraformec2346536567"
     region         = "ap-south-1"
     dynamodb_table = "terraform-locks"
-    key            = "eks/${terraform.workspace}/terraform.tfstate"
+    key            = "eks/terraform.tfstate"
+    workspace_key_prefix = "eks"
   }
 }
+
