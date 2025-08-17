@@ -22,4 +22,4 @@ node_groups = {
 
 # --- Cluster Autoscaler (required to avoid coalescelist error) ---
 cluster_autoscaler_cluster_ids   = []
-cluster_autoscaler_cluster_names = ["dev-eks"]
+cluster_autoscaler_cluster_names = ["dev-eks"]   # or ["prod-eks"] for prod
