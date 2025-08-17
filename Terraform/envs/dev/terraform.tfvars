@@ -9,7 +9,7 @@ public_subnets  = ["10.20.101.0/24","10.20.102.0/24","10.20.103.0/24"]
 
 node_groups = {
   apps = {
-    instance_types = ["m6i.large"]
+    instance_types = ["t3.small"]
     desired_size   = 2
     min_size       = 2
     max_size       = 4

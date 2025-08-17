@@ -37,7 +37,7 @@ jobs:
 
   apply:
     needs: plan
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/dev'
     runs-on: ubuntu-latest
     environment: dev
     permissions:
@@ -55,7 +55,7 @@ jobs:
       - name: Terraform Init
         run: terraform -chdir=terraform init -input=false
       - name: Terraform Workspace
-        run: terraform -chdir=terraform workspace select prod || terraform -chdir=terraform workspace new prod
+        run: terraform -chdir=terraform workspace select dev || terraform -chdir=terraform workspace new dev
       - name: Download Plan
         uses: actions/download-artifact@v4
         with:
@@ -65,7 +65,7 @@ jobs:
         run: terraform -chdir=terraform apply -auto-approve terraform/tfplan-dev.bin
 
   destroy-dev:
-    if: github.ref == 'refs/heads/dev'
+    if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     environment: dev
     permissions:
