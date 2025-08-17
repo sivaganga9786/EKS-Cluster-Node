@@ -3,5 +3,8 @@ output "cluster_endpoint"    { value = module.eks.cluster_endpoint }
 output "oidc_provider_arn"   { value = module.eks.oidc_provider_arn }
 #output "node_group_names"    { value = [for ng in module.eks.eks_managed_node_groups : ng.node_group_name] }
 output "node_group_names" {
-  value = [for ng in module.eks.eks_managed_node_groups : ng.value.name]
+  value = [for ng in keys(module.eks.eks_managed_node_groups) : ng]
+}
+output "node_group_arns" {
+  value = [for ng in module.eks.eks_managed_node_groups : ng.value.arn]
 }
