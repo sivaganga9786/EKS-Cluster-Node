@@ -18,3 +18,8 @@ node_groups = {
     taints         = []
   }
 }
+
+
+# --- Cluster Autoscaler (required to avoid coalescelist error) ---
+cluster_autoscaler_cluster_ids   = []
+cluster_autoscaler_cluster_names = ["dev-eks"]
