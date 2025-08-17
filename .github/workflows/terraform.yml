@@ -87,6 +87,3 @@ jobs:
       - name: Terraform Destroy
         run: terraform -chdir=terraform destroy -var-file=terraform/envs/dev/terraform.tfvars -auto-approve
 
-
-
-        
