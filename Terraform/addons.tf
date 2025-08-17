@@ -5,6 +5,8 @@ module "alb_irsa" {
 
   role_name                              = "${var.cluster_name}-alb-irsa"
   attach_load_balancer_controller_policy = true
+  cluster_autoscaler_cluster_ids   = var.cluster_autoscaler_cluster_ids
+  cluster_autoscaler_cluster_names = var.cluster_autoscaler_cluster_names
   oidc_providers = {
     main = {
       provider_arn               = module.eks.oidc_provider_arn
